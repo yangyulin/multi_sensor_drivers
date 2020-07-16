@@ -1,0 +1,11 @@
+<package>
+  <name>launch_sensor</name>
+  <version>2.2.3</version>
+  <description>Catkin metapackage for the sensor launch</description>
+  <maintainer email="yuyang@udel.edu">Yulin Yang</maintainer>
+  <license>BSD</license>
+  <url type="website">https://github.com/yangyulin/rs_pointgrey_microstrain</url>
+  <author>Yulin Yang</author>
+  <buildtool_depend>catkin</buildtool_depend>
+
+</package>

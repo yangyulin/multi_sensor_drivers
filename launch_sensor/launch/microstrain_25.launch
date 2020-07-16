@@ -1,0 +1,16 @@
+<launch>
+
+  <arg name="frameid"              default="imu_ms"/>
+  <arg name="port"                 default="/dev/ttyACM0"/>
+
+  <!-- imu -->
+  <node pkg="microstrain_3dmgx2_imu" type="imu_node" name="microstrain_3dmgx2_node" output="screen">
+    <param name="frameid"                 type="string"     value="$(arg frameid)" />
+    <param name="port"                    type="string"     value="$(arg port)" />
+    <param name="time_offset"             type="double"     value="-0.040" />
+    <param name="autostart"               type="bool"       value="true" />
+    <param name="autocalibrate"           type="bool"       value="true" />
+    <param name="angular_velocity_stdev"  type="double"     value="0.00017" />
+  </node>
+
+</launch>
