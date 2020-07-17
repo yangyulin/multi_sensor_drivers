@@ -4,7 +4,7 @@
   <!--================================================================-->
   <!--MicroStrain 3DM-GX3-25-->
   <arg name="frameid_imu"          default="imu_ms"/>
-  <arg name="port"                 default="/dev/ttyACM0"/>
+  <arg name="port"                 default="/dev/ttyACM1"/>
   <include file="$(find launch_sensor)/launch/microstrain_25.launch">
     <arg name="frameid"          value="$(arg frameid_imu)"/>
     <arg name="port"             value="$(arg port)"/>
@@ -26,7 +26,6 @@
   <!--================================================================-->
   <!--================================================================-->
   <!--Realsense D435i-->
-  <arg name="device_type_camera"  default="d435i"/>
   <arg name="serial_no"           default=""/>
   <arg name="json_file_path"      default=""/>
   <arg name="camera"              default="camera"/>
@@ -79,7 +78,6 @@
 
   <group ns="$(arg camera)">
     <include file="$(find realsense2_camera)/launch/includes/nodelet.launch.xml">
-      <arg name="device_type"           value="$(arg device_type_camera)"/>
       <arg name="tf_prefix"                value="$(arg tf_prefix)"/>
       <arg name="external_manager"         value="$(arg external_manager)"/>
       <arg name="manager"                  value="$(arg manager)"/>
