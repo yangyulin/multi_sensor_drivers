@@ -4,7 +4,7 @@
   <!--================================================================-->
   <!--MicroStrain 3DM-GX3-25-->
   <arg name="frameid_imu"          default="imu_ms"/>
-  <arg name="port"                 default="/dev/ttyACM1"/>
+  <arg name="port"                 default="/dev/ttyACM0"/>
   <include file="$(find launch_sensor)/launch/microstrain_25.launch">
     <arg name="frameid"          value="$(arg frameid_imu)"/>
     <arg name="port"             value="$(arg port)"/>
