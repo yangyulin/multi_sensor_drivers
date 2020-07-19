@@ -1,0 +1,9 @@
+<launch>
+  
+  <node pkg="microstrain_comm" type="microstrain_comm_node" name="microstrain_comm_node" output="screen">
+    <param name="rate" value="high" />
+    <param name="verbose" value="false" />
+    <param name="quiet" value="true" />
+  </node>
+
+</launch>

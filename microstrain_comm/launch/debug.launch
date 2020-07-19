@@ -1,0 +1,8 @@
+<launch>
+  
+  <node pkg="microstrain_comm" type="microstrain_comm_node" name="microstrain_comm_node" output="screen" launch-prefix="xterm -e gdb --args">
+    <param name="rate" value="low" />
+    <param name="verbose" value="true" />
+  </node>
+
+</launch>

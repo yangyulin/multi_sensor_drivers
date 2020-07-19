@@ -1,0 +1,56 @@
+#ifndef __microstrain_comm_
+#define __microstrain_comm_
+
+/**
+ * Define all needed constants
+ * Check the communication protocal pdf for info on how to add settings
+ */
+
+#define ACCEL_ANGRATE_ORIENT 0xC8
+#define LENGTH_ACCEL_ANGRATE_ORIENT 67
+
+#define ACC_ANG_MAG 0xCB
+#define LENGTH_ACC_ANG_MAG 43
+
+#define ACC_STAB (0xD2)
+#define LENGTH_ACC_STAB (43)
+
+#define DANG_DVEL_MAG 0xD3
+#define LENGTH_DANG_DVEL_MAG 43
+
+#define ACC_ANG_MAG_ROT 0xCC
+#define LENGTH_ACC_ANG_MAG_ROT 79
+
+#define CONTINUOUS_MODE_COMMAND 0xC4
+#define LENGTH_CONTINUOUS_MODE 4
+#define LENGTH_CONTINUOUS_MODE_ECHO 8
+
+#define COMMS_SETTINGS_COMMAND 0xD9
+#define LENGTH_COMMS_SETTINGS 11
+#define LENGTH_COMMS_SETTINGS_ECHO 10
+
+#define SAMPLING_SETTINGS_COMMAND 0xDB
+#define LENGTH_SAMPLING_SETTINGS 20
+#define LENGTH_SAMPLING_SETTINGS_ECHO 19
+
+#define DATA_RATE_DEFAULT 100
+#define DATA_RATE_MED 500
+#define DATA_RATE_HIGH 1000
+
+#define BAUD_RATE_DEFAULT 115200
+#define BAUD_RATE_MED 460800
+#define BAUD_RATE_HIGH 921600
+
+#define DELTA_ANG_VEL_DT_DEFAULT 0.010
+#define DELTA_ANG_VEL_DT_MED 0.002
+#define DELTA_ANG_VEL_DT_HIGH 0.001
+
+#define FILTER_WINDOW_SIZE_DEFAULT 15
+#define FILTER_WINDOW_SIZE_MIN 1
+#define FILTER_WINDOW_SIZE_MAX 32
+
+#define GRAVITY 9.80665
+#define INPUT_BUFFER_SIZE 2000
+
+
+#endif
