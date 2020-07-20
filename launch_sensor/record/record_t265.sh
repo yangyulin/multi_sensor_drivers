@@ -5,7 +5,8 @@ rosbag record \
 	/camera/gyro/sample \
 	/camera/fisheye1/image_raw \
 	/camera/fisheye2/image_raw \
-	/imu/data
+	/imu_ms/data
+
 
 	
 	

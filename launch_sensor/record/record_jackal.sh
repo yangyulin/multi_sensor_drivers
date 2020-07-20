@@ -6,8 +6,8 @@ rosbag record \
 	/camera/color/image_raw \
 	/camera/depth/image_rect_raw \
 	/camera_pg/image_raw \
+	/imu_ms/data \
 	/imu/data \
-	/imu/data_raw \
 	/garmin/fix \
 	/garmin/nmea_sentence \
 	/garmin/time_reference \
