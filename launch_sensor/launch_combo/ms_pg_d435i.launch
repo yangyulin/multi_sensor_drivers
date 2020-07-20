@@ -3,12 +3,17 @@
   <!--================================================================-->
   <!--================================================================-->
   <!--MicroStrain 3DM-GX3-25-->
-  <arg name="frameid_imu"          default="imu_ms"/>
-  <arg name="port"                 default="/dev/ttyACM1"/>
-  <include file="$(find launch_sensor)/launch/microstrain_25.launch">
-    <arg name="frameid"          value="$(arg frameid_imu)"/>
-    <arg name="port"             value="$(arg port)"/>
-  </include>
+<!--  <arg name="frameid_imu"          default="imu_ms"/>-->
+<!--  <arg name="port"                 default="/dev/ttyACM1"/>-->
+<!--  <include file="$(find launch_sensor)/launch/microstrain_25.launch">-->
+<!--    <arg name="frameid"          value="$(arg frameid_imu)"/>-->
+<!--    <arg name="port"             value="$(arg port)"/>-->
+<!--  </include>-->
+  <node pkg="microstrain_comm" type="microstrain_comm_node" name="microstrain_comm_node" output="screen">
+    <param name="rate"     value="medium" />
+    <param name="verbose"  value="false" />
+    <param name="quiet"    value="true" />
+  </node>
 
   <!--================================================================-->
   <!--================================================================-->
@@ -16,11 +21,19 @@
   <arg name="camera_name_pg"      default="camera_pg" />
   <arg name="camera_serial_pg"    default="0" />
   <arg name="calibrated"          default="0" />
-  <arg name="frame_rate"          default="15" />
+  <arg name="frame_rate"          default="30" />
+  <arg name="auto_shutter"        default="false" />
+  <arg name="shutter_speed"        default="0.015" />
+  <arg name="format7_roi_width"        default="800" />
+  <arg name="format7_roi_height"        default="600" />
   <include file="$(find launch_sensor)/launch/pointgrey.launch">
     <arg name="camera_name_pg"   value="$(arg camera_name_pg)"/>
     <arg name="camera_serial_pg" value="$(arg camera_serial_pg)"/>
     <arg name="frame_rate"       value="$(arg frame_rate)"/>
+    <arg name="auto_shutter"        value="$(arg auto_shutter)" />
+    <arg name="shutter_speed"        value="$(arg shutter_speed)" />
+    <arg name="format7_roi_width"        value="$(arg format7_roi_width)" />
+    <arg name="format7_roi_height"        value="$(arg format7_roi_height)" />
   </include>
 
   <!--================================================================-->
@@ -129,8 +142,8 @@
   </group>
 
   <!-- Loads the camera model -->
-<!--  <param name="robot_description" command="$(find xacro)/xacro &#45;&#45;inorder '$(find realsense2_description)/urdf/test_d435_camera.urdf.xacro' use_nominal_extrinsics:=false"/>-->
+  <param name="robot_description" command="$(find xacro)/xacro --inorder '$(find realsense2_description)/urdf/test_d435_camera.urdf.xacro' use_nominal_extrinsics:=false"/>
 
-<!--  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"/>-->
-<!--  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find realsense2_description)/rviz/urdf.rviz" required="true"/>-->
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"/>
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find realsense2_description)/rviz/urdf.rviz" required="true"/>
 </launch>
