@@ -29,6 +29,8 @@
     <arg name="shutter_speed"           value="$(arg shutter_speed)" />
     <arg name="format7_roi_width"       value="$(arg format7_roi_width)" />
     <arg name="format7_roi_height"      value="$(arg format7_roi_height)" />
+    <arg name="format7_color_coding"      value="$(arg format7_color_coding)" />
+
   </include>
 
 
