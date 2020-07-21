@@ -24,3 +24,7 @@ In Terminal 2: ssh administrator@IP, cd to catkin_ws_sensor/src/rs_pointgrey_mic
 
 This will automaticaly start the recording. 
 
+4) Copy the data out
+
+`scp filename user@IP:path`
+
