@@ -9,7 +9,8 @@
   <arg name="shutter_speed"             default="0.015" />
   <arg name="format7_roi_width"         default="800" />
   <arg name="format7_roi_height"        default="600" />
-
+  <arg name="format7_color_coding"      default="mono8" />
+SSS
 
   <group ns="$(arg camera_name_pg)">
     <node pkg="nodelet" type="nodelet" name="camera_nodelet_manager" args="manager" />
