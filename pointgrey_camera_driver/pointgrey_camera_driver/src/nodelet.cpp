@@ -264,8 +264,8 @@ private:
     pg_.setGigEParameters(auto_packet_size_, packet_size_, packet_delay_);
 
     // Get the location of our camera config yaml
-    std::string camera_info_url;
-    pnh.param<std::string>("camera_info_url", camera_info_url, "");
+    std::string camera_info_url = "~/Datasets/pg.yaml";
+    pnh.param<std::string>("camera_info_url", camera_info_url, "~/Datasets/pg.yaml");
     // Get the desired frame_id, set to 'camera' if not found
     pnh.param<std::string>("frame_id", frame_id_, "camera");
     // Do not call the connectCb function until after we are done initializing.
