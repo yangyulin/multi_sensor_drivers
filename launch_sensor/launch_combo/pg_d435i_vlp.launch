@@ -13,6 +13,8 @@
   <arg name="shutter_speed"        default="0.015" />
   <arg name="format7_roi_width"        default="800" />
   <arg name="format7_roi_height"        default="600" />
+  <arg name="camera_info_url"           default="$(find launch_sensor)/launch/calib/pg.yaml"  />
+
   <include file="$(find launch_sensor)/launch/pointgrey.launch">
     <arg name="camera_name_pg"   value="$(arg camera_name_pg)"/>
     <arg name="camera_serial_pg" value="$(arg camera_serial_pg)"/>
@@ -21,6 +23,7 @@
     <arg name="shutter_speed"        value="$(arg shutter_speed)" />
     <arg name="format7_roi_width"        value="$(arg format7_roi_width)" />
     <arg name="format7_roi_height"        value="$(arg format7_roi_height)" />
+    <arg name="camera_info_url"        value="$(arg camera_info_url)" />
   </include>
 
   <include file="$(find launch_sensor)/launch/VLP16_points.launch">
