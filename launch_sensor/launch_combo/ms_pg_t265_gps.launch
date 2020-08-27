@@ -41,12 +41,13 @@
   <arg name="time_ref_source" default="gps" />
   <arg name="useRMC"          default="False" />
   <arg name="port"            default="/dev/ttyACM2" />
-
+  <arg name="baud"            default="9600" />
+  <arg name="frame_id"        default="gps" />
 
   <include file="$(find launch_sensor)/launch/gps.launch">
     <arg name="port"                value="$(arg port)"/>
-    <arg name="baud"                value="9600" />
-    <arg name="frame_id"            value="gps" />
+    <arg name="baud"                value="$(arg baud)" />
+    <arg name="frame_id"            value="$(arg frame_id)" />
     <arg name="use_GNSS_time"       value="$(arg use_GNSS_time)" />
     <arg name="time_ref_source"     value="$(arg time_ref_source)" />
     <arg name="useRMC"              value="$(arg useRMC)" />
