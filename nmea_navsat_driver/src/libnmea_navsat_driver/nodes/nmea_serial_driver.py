@@ -62,7 +62,9 @@ def main():
         try:
             driver = RosNMEADriver()
             while not rospy.is_shutdown():
+
                 # print(GPS.readline())
+
                 data = GPS.readline().strip()
                 try:
                     driver.add_sentence(data, frame_id)
