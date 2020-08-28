@@ -45,8 +45,6 @@
 
   <include file="$(find launch_sensor)/launch/gps.launch">
     <arg name="port"                value="$(arg port)"/>
-    <arg name="baud"                value="9600" />
-    <arg name="frame_id"            value="gps" />
     <arg name="use_GNSS_time"       value="$(arg use_GNSS_time)" />
     <arg name="time_ref_source"     value="$(arg time_ref_source)" />
     <arg name="useRMC"              value="$(arg useRMC)" />
