@@ -78,17 +78,6 @@
     </include>
   </group>
 
-
-  <!--================================================================-->
-  <!--================================================================-->
-  <!--MicroStrain 3DM-GX3-25-->
-  <node pkg="microstrain_comm" type="microstrain_comm_node" name="microstrain_comm_node" output="screen">
-    <param name="rate"     value="medium" />
-    <param name="verbose"  value="false" />
-    <param name="quiet"    value="true" />
-  </node>
-
-
   <!--================================================================-->
   <!--================================================================-->
   <!--VICON system-->
@@ -102,7 +91,7 @@
   <!--VICON odometry system-->
   <arg name="model"               default="cvio_s4"/>
   <arg name="child_frame_id"      default="$(arg model)/base_link"/>
-  <arg name="publish_tf"          default="false"/>
+  <arg name="publish_tf"          default="true"/>
   <arg name="vicon_fps"           default="100"/>
   <arg name="output"              default="screen"/>
   <include file="$(find launch_sensor)/launch/vicon_odom.launch">
@@ -112,6 +101,17 @@
     <arg name="vicon_fps"           value="$(arg vicon_fps)"/>
     <arg name="output"              value="$(arg output)"/>
   </include>
+
+  <!--================================================================-->
+  <!--================================================================-->
+  <!--MicroStrain 3DM-GX3-25-->
+  <node pkg="microstrain_comm" type="microstrain_comm_node" name="microstrain_comm_node" output="screen">
+    <param name="rate"     value="medium" />
+    <param name="verbose"  value="false" />
+    <param name="quiet"    value="true" />
+  </node>
+
+
 
 
 
