@@ -26,8 +26,8 @@
     <arg name="camera_info_url"        value="$(arg camera_info_url)" />
   </include>
 
-  <include file="$(find launch_sensor)/launch/VLP16_points.launch">
-  </include>
+<!--  <include file="$(find launch_sensor)/launch/VLP16_points.launch">-->
+<!--  </include>-->
 
   <!--================================================================-->
   <!--================================================================-->
