@@ -18,8 +18,8 @@
   <arg name="frame_rate"          	default="30" />
   <arg name="auto_shutter"        	default="false" />
   <arg name="shutter_speed"        	default="0.015" />
-  <arg name="format7_roi_width"        	default="900" />
-  <arg name="format7_roi_height"        default="800" />
+  <arg name="format7_roi_width"        	default="800" />
+  <arg name="format7_roi_height"        default="600" />
   <include file="$(find launch_sensor)/launch/pointgrey.launch">
     <arg name="camera_name_pg"   value="$(arg camera_name_pg)"/>
     <arg name="camera_serial_pg" value="$(arg camera_serial_pg)"/>

@@ -3,12 +3,6 @@
   <!--================================================================-->
   <!--================================================================-->
   <!--MicroStrain 3DM-GX3-25-->
-<!--  <arg name="frameid_imu"          default="imu_ms"/>-->
-<!--  <arg name="port"                 default="/dev/ttyACM1"/>-->
-<!--  <include file="$(find launch_sensor)/launch/microstrain_25.launch">-->
-<!--    <arg name="frameid"          value="$(arg frameid_imu)"/>-->
-<!--    <arg name="port"             value="$(arg port)"/>-->
-<!--  </include>-->
   <node pkg="microstrain_comm" type="microstrain_comm_node" name="microstrain_comm_node" output="screen">
     <param name="rate"     value="medium" />
     <param name="verbose"  value="false" />
