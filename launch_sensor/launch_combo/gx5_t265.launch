@@ -8,10 +8,10 @@
   <arg name="imu_port"    default = "/dev/ttyACM0" />
   <arg name="baudrate"    default = "115200" />
   <include file="$(find launch_sensor)/launch/microstrain_gx5.launch">
-    <arg name="port"          value="$(arg imu_port)"       />
+    <arg name="imu_port"      value="$(arg imu_port)"       />
     <arg name="baudrate"      value="$(arg baudrate)"       />
-    <arg name="imu_data_rate" value="$(arg imu_rate)"       />
-    <arg name="imu_frame_id"  value="$(arg imu_name)_link"  />
+    <arg name="imu_rate"      value="$(arg imu_rate)"       />
+    <arg name="imu_name"      value="$(arg imu_name)"       />
   </include>
 
 
