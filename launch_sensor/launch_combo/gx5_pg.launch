@@ -1,0 +1,39 @@
+<launch>
+
+  <!--================================================================-->
+  <!--================================================================-->
+  <!--MicroStrain 3DM-GX5-15-->
+  <arg name="imu_name"    default = "gx5" />
+  <arg name="imu_rate"    default = "500" />
+  <arg name="imu_port"    default = "/dev/ttyACM0" />
+  <arg name="baudrate"    default = "115200" />
+  <include file="$(find launch_sensor)/launch/microstrain_gx5.launch">
+    <arg name="port"          value="$(arg imu_port)"       />
+    <arg name="baudrate"      value="$(arg baudrate)"       />
+    <arg name="imu_data_rate" value="$(arg imu_rate)"       />
+    <arg name="imu_frame_id"  value="$(arg imu_name)_link"  />
+  </include>
+
+  <!--================================================================-->
+  <!--================================================================-->
+  <!--Pointgrey camera (blackfly)-->
+  <arg name="camera_name_pg"      	default="camera_pg" />
+  <arg name="camera_serial_pg"    	default="0" />
+  <arg name="calibrated"          	default="0" />
+  <arg name="frame_rate"          	default="30" />
+  <arg name="auto_shutter"        	default="false" />
+  <arg name="shutter_speed"        	default="0.015" />
+  <arg name="format7_roi_width"        	default="800" />
+  <arg name="format7_roi_height"        default="600" />
+  <include file="$(find launch_sensor)/launch/pointgrey.launch">
+    <arg name="camera_name_pg"   value="$(arg camera_name_pg)"/>
+    <arg name="camera_serial_pg" value="$(arg camera_serial_pg)"/>
+    <arg name="frame_rate"       value="$(arg frame_rate)"/>
+    <arg name="auto_shutter"        value="$(arg auto_shutter)" />
+    <arg name="shutter_speed"        value="$(arg shutter_speed)" />
+    <arg name="format7_roi_width"        value="$(arg format7_roi_width)" />
+    <arg name="format7_roi_height"        value="$(arg format7_roi_height)" />
+  </include>
+
+
+</launch>
