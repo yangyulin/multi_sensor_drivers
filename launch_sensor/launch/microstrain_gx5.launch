@@ -19,7 +19,7 @@
   <!-- Microstrain sensor node -->
   <!-- ****************************************************************** -->
     
-  <node name="ros_mscl_node" pkg="ros_mscl" type="ros_mscl_node" output="screen" ns="$(arg name)">
+  <node name="ros_mscl_node" pkg="ros_mscl" type="ros_mscl_node" output="screen" ns="$(arg imu_name)">
 
     <!-- ****************************************************************** -->
     <!-- General Settings -->
