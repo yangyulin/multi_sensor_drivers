@@ -1,0 +1,128 @@
+<launch>
+
+  <!--================================================================-->
+  <!--================================================================-->
+  <!--MicroStrain 3DM-GX3-25-->
+  <node pkg="microstrain_comm" type="microstrain_comm_node" name="microstrain_comm_node" output="screen">
+    <param name="rate"     value="medium" />
+    <param name="verbose"  value="false" />
+    <param name="quiet"    value="true" />
+  </node>
+
+  <!--MicroStrain 3DM-GX5-35-->
+  <arg name="imu_name"    default = "gx3_35" />
+  <arg name="imu_rate"    default = "500" />
+  <arg name="imu_port"    default = "/dev/ttyACM0" />
+  <arg name="baudrate"    default = "115200" />
+  <include file="$(find launch_sensor)/launch/microstrain_gx5.launch">
+    <arg name="imu_port"      value="$(arg imu_port)"       />
+    <arg name="baudrate"      value="$(arg baudrate)"       />
+    <arg name="imu_rate"      value="$(arg imu_rate)"       />
+    <arg name="imu_name"      value="$(arg imu_name)"       />
+  </include>
+
+  <!--================================================================-->
+  <!--================================================================-->
+  <!--Pointgrey camera (blackfly)-->
+  <arg name="camera_name"               default="blackfly" />
+  <arg name="camera_serial"             default="0" />
+  <arg name="calibrated"                default="0" />
+  <arg name="control_frame_rate"        default="false" />
+  <arg name="frame_rate"                default="30" />
+  <include file="$(find launch_sensor)/launch/blackfly.launch">
+    <arg name="camera_name"             value="$(arg camera_name)"/>
+    <arg name="camera_serial"           value="$(arg camera_serial)"/>
+    <arg name="frame_rate"              value="$(arg frame_rate)"/>
+    <arg name="control_frame_rate"      value="$(arg control_frame_rate)"/>
+    <arg name="calibrated"              value="$(arg calibrated)" />
+  </include>
+
+
+  <!--================================================================-->
+  <!--================================================================-->
+  <!--Realsense D435i and t265-->
+  <arg name="device_type_camera1"    		default="T265"/>
+  <arg name="device_type_camera2"    		default="D435"/>		<!-- Note: using regular expression. match D435, D435i, D415... -->
+  <arg name="serial_no_camera1"    			default=""/>
+  <arg name="serial_no_camera2"    			default=""/>
+  <arg name="camera1"              			default="T265"/>
+  <arg name="camera2"              			default="D435"/>
+  <arg name="tf_prefix_camera1"         default="$(arg camera1)"/>
+  <arg name="tf_prefix_camera2"         default="$(arg camera2)"/>
+  <arg name="initial_reset"             default="false"/>
+  <arg name="enable_fisheye"            default="false"/>
+  <arg name="color_width"               default="1920"/>
+  <arg name="color_height"              default="1080"/>
+  <arg name="depth_width"               default="1280"/>
+  <arg name="depth_height"              default="720"/>
+  <arg name="enable_depth"              default="false"/>
+  <arg name="enable_infra1"             default="true"/>
+  <arg name="enable_infra2"             default="true"/>
+  <arg name="enable_color"              default="true"/>
+  <arg name="clip_distance"             default="-2"/>
+  <arg name="topic_odom_in"             default="odom_in"/>
+  <arg name="calib_odom_file"           default=""/>
+
+  <group ns="$(arg camera1)">
+    <include file="$(find realsense2_camera)/launch/includes/nodelet.launch.xml">
+      <arg name="device_type"           value="$(arg device_type_camera1)"/>
+      <arg name="serial_no"             value="$(arg serial_no_camera1)"/>
+      <arg name="tf_prefix"         	value="$(arg tf_prefix_camera1)"/>
+      <arg name="initial_reset"         value="$(arg initial_reset)"/>
+      <arg name="enable_fisheye1"       value="$(arg enable_fisheye)"/>
+      <arg name="enable_fisheye2"       value="$(arg enable_fisheye)"/>
+      <arg name="topic_odom_in"         value="$(arg topic_odom_in)"/>
+      <arg name="calib_odom_file"       value="$(arg calib_odom_file)"/>
+    </include>
+  </group>
+
+  <group ns="$(arg camera2)">
+    <include file="$(find realsense2_camera)/launch/includes/nodelet.launch.xml">
+      <arg name="device_type"           value="$(arg device_type_camera2)"/>
+      <arg name="serial_no"             value="$(arg serial_no_camera2)"/>
+      <arg name="tf_prefix"		        value="$(arg tf_prefix_camera2)"/>
+      <arg name="initial_reset"         value="$(arg initial_reset)"/>
+      <arg name="enable_depth"          value="$(arg enable_depth)"/>
+      <arg name="enable_infra1"         value="$(arg enable_infra1)"/>
+      <arg name="enable_infra2"         value="$(arg enable_infra2)"/>
+      <arg name="enable_color"          value="$(arg enable_color)"/>
+      <arg name="align_depth"           value="false"/>
+      <arg name="filters"               value="pointcloud"/>
+      <arg name="color_width"           value="$(arg color_width)"/>
+      <arg name="color_height"          value="$(arg color_height)"/>
+      <arg name="depth_width"           value="$(arg depth_width)"/>
+      <arg name="depth_height"          value="$(arg depth_height)"/>
+      <arg name="clip_distance"         value="$(arg clip_distance)"/>
+    </include>
+  </group>
+  <node pkg="tf" type="static_transform_publisher" name="t265_to_d400" args="0 0 0 0 0 0 /$(arg tf_prefix_camera1)_link /$(arg tf_prefix_camera2)_link 100"/>
+
+
+  <!--================================================================-->
+  <!--================================================================-->
+  <!--VICON system-->
+  <arg name="vicon_server" default="192.168.1.161"/>
+  <include file="$(find launch_sensor)/launch/vicon.launch">
+    <arg name="vicon_server" value="$(arg vicon_server)"/>
+  </include>
+
+  <!--================================================================-->
+  <!--================================================================-->
+  <!--VICON odometry system-->
+  <arg name="model"               default="vio"/>
+  <arg name="child_frame_id"      default="$(arg model)/base_link"/>
+  <arg name="publish_tf"          default="true"/>
+  <arg name="vicon_fps"           default="100"/>
+  <arg name="output"              default="screen"/>
+  <include file="$(find launch_sensor)/launch/vicon_odom.launch">
+    <arg name="model"               value="$(arg model)"/>
+    <arg name="child_frame_id"      value="$(arg child_frame_id)"/>
+    <arg name="publish_tf"          value="$(arg publish_tf)"/>
+    <arg name="vicon_fps"           value="$(arg vicon_fps)"/>
+    <arg name="output"              value="$(arg output)"/>
+  </include>
+
+
+
+
+</launch>
