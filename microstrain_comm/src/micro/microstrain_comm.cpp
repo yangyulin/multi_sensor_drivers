@@ -671,7 +671,7 @@ int main(int argc, char** argv)
     ros::NodeHandle nh("~");
 
     // Our publisher
-    ros::NodeHandle imu_node_handle("imu_ms");
+    ros::NodeHandle imu_node_handle("gx3_25");
     imu_data_pub_ = imu_node_handle.advertise<sensor_msgs::Imu>("data", 100);
 
     // Defualt message mode
