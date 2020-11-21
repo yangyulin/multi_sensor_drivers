@@ -22,7 +22,7 @@
   <arg name="camera_name_pg"            default="camera_pg" />
   <arg name="camera_serial_pg"          default="0" />
   <arg name="calibrated"                default="0" />
-  <arg name="frame_rate"                default="30" />
+  <arg name="frame_rate"                default="10" />
   <arg name="auto_shutter"              default="false" />
   <arg name="shutter_speed"             default="0.015" />
   <arg name="format7_roi_width"         default="800" />

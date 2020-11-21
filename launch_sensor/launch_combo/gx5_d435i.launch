@@ -1,7 +1,27 @@
 <launch>
+
+  <!--================================================================-->
+  <!--================================================================-->
+  <!--MicroStrain 3DM-GX5-15-->
+  <arg name="imu_name"    default = "gx5" />
+  <arg name="imu_rate"    default = "500" />
+  <arg name="imu_port"    default = "/dev/ttyACM0" />
+  <arg name="baudrate"    default = "115200" />
+  <include file="$(find launch_sensor)/launch/microstrain_gx5.launch">
+    <arg name="imu_port"      value="$(arg imu_port)"       />
+    <arg name="baudrate"      value="$(arg baudrate)"       />
+    <arg name="imu_rate"      value="$(arg imu_rate)"       />
+    <arg name="imu_name"      value="$(arg imu_name)"       />
+  </include>
+
+
+
+  <!--================================================================-->
+  <!--================================================================-->
+  <!--Realsense D435i-->
   <arg name="serial_no"           default=""/>
   <arg name="json_file_path"      default=""/>
-  <arg name="camera"              default="camera"/>
+  <arg name="camera"              default="d435i"/>
   <arg name="tf_prefix"           default="$(arg camera)"/>
   <arg name="external_manager"    default="false"/>
   <arg name="manager"             default="realsense2_camera_manager"/>
@@ -12,15 +32,15 @@
 
   <arg name="depth_width"         default="640"/>
   <arg name="depth_height"        default="480"/>
-  <arg name="enable_depth"        default="false"/>
+  <arg name="enable_depth"        default="true"/>
 
   <arg name="infra_width"        default="640"/>
   <arg name="infra_height"       default="480"/>
   <arg name="enable_infra1"       default="true"/>
   <arg name="enable_infra2"       default="true"/>
 
-  <arg name="color_width"         default="1920"/>
-  <arg name="color_height"        default="1080"/>
+  <arg name="color_width"         default="640"/>
+  <arg name="color_height"        default="480"/>
   <arg name="enable_color"        default="true"/>
 
   <arg name="fisheye_fps"         default="30"/>
@@ -100,10 +120,4 @@
       <arg name="allow_no_texture_points"  value="$(arg allow_no_texture_points)"/>
     </include>
   </group>
-
-  <!-- Loads the camera model -->
-  <param name="robot_description" command="$(find xacro)/xacro --inorder '$(find realsense2_description)/urdf/test_d435_camera.urdf.xacro' use_nominal_extrinsics:=false"/>
-
-  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"/>
-  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find realsense2_description)/rviz/urdf.rviz" required="true"/>
 </launch>
