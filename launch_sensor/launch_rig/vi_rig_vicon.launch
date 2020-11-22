@@ -94,7 +94,7 @@
   <!--================================================================-->
   <!--================================================================-->
   <!--VICON system-->
-  <arg name="vicon_server" default="192.168.1.161"/>
+  <arg name="vicon_server" default="192.168.1.162"/>
   <include file="$(find launch_sensor)/launch/vicon.launch">
     <arg name="vicon_server" value="$(arg vicon_server)"/>
   </include>

@@ -1,6 +1,6 @@
 <launch>
 
-  <arg name="vicon_server" default="192.168.1.161"/>
+  <arg name="vicon_server" default="192.168.1.162"/>
 
 
   <node pkg="vicon" type="vicon" name="vicon" output="screen">
