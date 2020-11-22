@@ -11,7 +11,9 @@ rosbag record \
 	/D435/depth/image_rect_raw \
 	/blackfly/image_raw \
 	/gx3_25/data \
-	/gx3_35/data
+	/gx3_35/data \
+	/vio/odom \
+	/vicon/vio
 
 	
 	

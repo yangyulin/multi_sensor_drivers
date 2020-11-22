@@ -44,7 +44,7 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
     <node pkg="nodelet" type="nodelet" name="spinnaker_camera_nodelet"
           args="load spinnaker_camera_driver/SpinnakerCameraNodelet camera_nodelet_manager" >
 
-      <param name="frame_id"                        value="camera" />
+      <param name="frame_id"                        value="$(arg camera_name)" />
       <param name="serial"                          value="$(arg camera_serial)" />
 
       <!-- Frame rate -->

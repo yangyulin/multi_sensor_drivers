@@ -2,17 +2,10 @@
 
   <!--================================================================-->
   <!--================================================================-->
-  <!--MicroStrain 3DM-GX3-25-->
-  <node pkg="microstrain_comm" type="microstrain_comm_node" name="microstrain_comm_node" output="screen">
-    <param name="rate"     value="medium" />
-    <param name="verbose"  value="false" />
-    <param name="quiet"    value="true" />
-  </node>
-
   <!--MicroStrain 3DM-GX5-35-->
   <arg name="imu_name"    default = "gx3_35" />
   <arg name="imu_rate"    default = "300" />
-  <arg name="imu_port"    default = "/dev/ttyACM2" />
+  <arg name="imu_port"    default = "/dev/ttyACM1" />
   <arg name="baudrate"    default = "115200" />
   <include file="$(find launch_sensor)/launch/microstrain_gx5.launch">
     <arg name="imu_port"      value="$(arg imu_port)"       />
@@ -50,7 +43,7 @@
   <arg name="tf_prefix_camera1"         default="$(arg camera1)"/>
   <arg name="tf_prefix_camera2"         default="$(arg camera2)"/>
   <arg name="initial_reset"             default="false"/>
-  <arg name="enable_fisheye"            default="false"/>
+  <arg name="enable_fisheye"            default="true"/>
   <arg name="color_width"               default="1920"/>
   <arg name="color_height"              default="1080"/>
   <arg name="depth_width"               default="1280"/>
