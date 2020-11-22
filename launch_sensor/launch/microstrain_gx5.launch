@@ -7,11 +7,11 @@
 
   <!-- Declare arguments with default values -->
   <arg name="imu_name"    default = "gx5" />
-  <arg name="imu_rate"    default = "500" />
-  <arg name="imu_port"    default = "/dev/ttyACM0" />
+  <arg name="imu_rate"    default = "200" />
+  <arg name="imu_port"    default = "/dev/ttyACM1" />
   <arg name="baudrate"    default = "115200" />
   <arg name="debug"       default = "false" />
-  <arg name="diagnostics" default = "true" />
+  <arg name="diagnostics" default = "false" />
 
 
 
@@ -33,7 +33,7 @@
           true  - Overwrite the current device settings with those listed below
      -->
      
-    <param name="device_setup" value="true" type="bool" />
+    <param name="device_setup" value="false" type="bool" />
     
 
     <!-- Controls if the driver-defined settings are saved 
@@ -41,7 +41,7 @@
           true  - Save the settings in the device's non-volatile memory
      -->
      
-    <param name="save_settings" value="true" type="bool" />
+    <param name="save_settings" value="false" type="bool" />
     
 
     <!-- ****************************************************************** -->
@@ -76,7 +76,7 @@
     <rosparam param="gnss1_antenna_offset"> [0.0, -0.7, -1.0]</rosparam>
 
     <!-- GNSS2 settings are only applicable for multi-GNSS systems (e.g. GQ7) -->
-    <param name="publish_gnss2"   value="true" type="bool" />
+    <param name="publish_gnss2"   value="false" type="bool" />
     <param name="gnss2_data_rate" value="2"    type="int" />
     <param name="gnss2_frame_id"  value="gnss2_antenna_wgs84" type="str" />
 
@@ -86,7 +86,7 @@
     <rosparam param="gnss2_antenna_offset"> [0.0, 0.7, -1.0]</rosparam>
 
     <!-- (GQ7 Only) Enable RTK dongle interface -->
-    <param name="rtk_dongle_enable" value="true"    type="bool" />
+    <param name="rtk_dongle_enable" value="false"    type="bool" />
  
     <!-- ****************************************************************** -->
     <!-- Kalman Filter Settings (only applicable for devices with a Kalman Filter) -->
