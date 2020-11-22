@@ -338,7 +338,7 @@ private:
 
     // Set up a diagnosed publisher
     double desired_freq;
-    pnh.param<double>("desired_freq", desired_freq, 30.0);
+    pnh.param<double>("desired_freq", desired_freq, 25.0);
     pnh.param<double>("min_freq", min_freq_, desired_freq);
     pnh.param<double>("max_freq", max_freq_, desired_freq);
     double freq_tolerance;  // Tolerance before stating error on publish frequency, fractional percent of desired

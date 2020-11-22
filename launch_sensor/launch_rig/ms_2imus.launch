@@ -1,0 +1,34 @@
+<launch>
+
+
+
+  <!--MicroStrain 3DM-GX5-35-->
+  <arg name="imu_name"    default = "gx3_35" />
+  <arg name="imu_rate"    default = "200" />
+  <arg name="imu_port"    default = "/dev/ttyACM1" />
+  <arg name="baudrate"    default = "115200" />
+  <include file="$(find launch_sensor)/launch/microstrain_gx5.launch">
+    <arg name="imu_port"      value="$(arg imu_port)"       />
+    <arg name="baudrate"      value="$(arg baudrate)"       />
+    <arg name="imu_rate"      value="$(arg imu_rate)"       />
+    <arg name="imu_name"      value="$(arg imu_name)"       />
+  </include>
+
+
+  <!--================================================================-->
+  <!--================================================================-->
+  <!--MicroStrain 3DM-GX3-25-->
+  <node pkg="microstrain_comm" type="microstrain_comm_node" name="microstrain_comm_node" output="screen">
+    <param name="rate"     value="medium" />
+    <param name="verbose"  value="false" />
+    <param name="quiet"    value="true" />
+  </node>
+
+
+
+
+
+
+
+
+</launch>
