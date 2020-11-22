@@ -28,7 +28,7 @@
   <arg name="camera_serial"             default="0" />
   <arg name="calibrated"                default="0" />
   <arg name="control_frame_rate"        default="false" />
-  <arg name="frame_rate"                default="30" />
+  <arg name="frame_rate"                default="25" />
   <include file="$(find launch_sensor)/launch/blackfly.launch">
     <arg name="camera_name"             value="$(arg camera_name)"/>
     <arg name="camera_serial"           value="$(arg camera_serial)"/>
