@@ -1,0 +1,34 @@
+<launch>
+
+  <!--================================================================-->
+  <!--================================================================-->
+  <!--MicroStrain 3DM-GX3-25-->
+  <node pkg="microstrain_comm" type="microstrain_comm_node" name="microstrain_comm_node" output="screen">
+    <param name="rate"     value="medium" />
+    <param name="verbose"  value="false" />
+    <param name="quiet"    value="true" />
+  </node>
+
+  <!--================================================================-->
+  <!--================================================================-->
+  <!--Pointgrey camera (blackfly)-->
+  <arg name="camera_name_pg"      	default="camera_pg" />
+  <arg name="camera_serial_pg"    	default="0" />
+  <arg name="calibrated"          	default="0" />
+  <arg name="frame_rate"          	default="30" />
+  <arg name="auto_shutter"        	default="false" />
+  <arg name="shutter_speed"        	default="0.015" />
+  <arg name="format7_roi_width"        	default="800" />
+  <arg name="format7_roi_height"        default="600" />
+  <include file="$(find launch_sensor)/launch/pointgrey.launch">
+    <arg name="camera_name_pg"   value="$(arg camera_name_pg)"/>
+    <arg name="camera_serial_pg" value="$(arg camera_serial_pg)"/>
+    <arg name="frame_rate"       value="$(arg frame_rate)"/>
+    <arg name="auto_shutter"        value="$(arg auto_shutter)" />
+    <arg name="shutter_speed"        value="$(arg shutter_speed)" />
+    <arg name="format7_roi_width"        value="$(arg format7_roi_width)" />
+    <arg name="format7_roi_height"        value="$(arg format7_roi_height)" />
+  </include>
+
+
+</launch>

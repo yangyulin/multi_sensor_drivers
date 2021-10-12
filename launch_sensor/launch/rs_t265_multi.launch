@@ -1,0 +1,83 @@
+<launch>
+
+
+
+  <arg name="initial_reset"       default="false"/> <!-- reset the device on start to ensure we connect -->
+  <arg name="enable_sync"         default="false"/> <!-- sync all device timestamps -->
+
+  <arg name="enable_fisheye"      default="true"/>
+  <arg name="fisheye_width"       default="848"/> <!-- rs-enumerate-devices -->
+  <arg name="fisheye_height"      default="800"/> <!-- rs-enumerate-devices -->
+  <arg name="fisheye_fps"         default="30"/> <!-- rs-enumerate-devices -->
+  <arg name="gyro_fps"            default="200"/> <!-- rs-enumerate-devices -->
+  <arg name="accel_fps"           default="62"/> <!-- rs-enumerate-devices -->
+  <arg name="unite_imu_method"    default="linear_interpolation"/> <!-- combines accel+gyro into one message -->
+
+
+
+ 
+
+  <!-- ========================================================= -->
+  <!-- ========================================================= -->
+  <!-- ========================================================= -->
+
+
+  <arg name="serial_no_camera3"   default="925122110877"/> <!-- Note: Replace with actual serial number -->
+  <arg name="camera3"             default="t265_03"/> <!-- Note: Replace with camera name -->
+  <arg name="tf_prefix_camera3"   default="$(arg camera3)"/>
+
+  <group ns="$(arg camera3)">
+    <include file="$(find realsense2_camera)/launch/includes/nodelet.launch.xml">
+      <arg name="serial_no"             value="$(arg serial_no_camera3)"/>
+      <arg name="tf_prefix"             value="$(arg tf_prefix_camera3)"/>
+      <arg name="initial_reset"         value="$(arg initial_reset)"/>
+      <arg name="enable_fisheye1"       value="$(arg enable_fisheye)"/>
+      <arg name="enable_fisheye2"       value="$(arg enable_fisheye)"/>
+      <arg name="fisheye_width"         value="$(arg fisheye_width)"/>
+      <arg name="fisheye_height"        value="$(arg fisheye_height)"/>
+      <arg name="enable_sync"           value="$(arg enable_sync)"/>
+      <arg name="unite_imu_method"      value="$(arg unite_imu_method)"/>
+      <arg name="fisheye_fps"           value="$(arg fisheye_fps)"/>
+      <arg name="gyro_fps"              value="$(arg gyro_fps)"/>
+      <arg name="accel_fps"             value="$(arg accel_fps)"/>
+      <arg name="enable_gyro"           value="true"/>
+      <arg name="enable_accel"          value="true"/>
+    </include>
+  </group>
+
+
+  <!-- ========================================================= -->
+  <!-- ========================================================= -->
+  <!-- ========================================================= -->
+
+
+  <arg name="serial_no_camera4"   default="929122111870"/> <!-- Note: Replace with actual serial number -->
+  <arg name="camera4"             default="t265_04"/> <!-- Note: Replace with camera name -->
+  <arg name="tf_prefix_camera4"   default="$(arg camera4)"/>
+
+  <group ns="$(arg camera4)">
+    <include file="$(find realsense2_camera)/launch/includes/nodelet.launch.xml">
+      <arg name="serial_no"             value="$(arg serial_no_camera4)"/>
+      <arg name="tf_prefix"             value="$(arg tf_prefix_camera4)"/>
+      <arg name="initial_reset"         value="$(arg initial_reset)"/>
+      <arg name="enable_fisheye1"       value="$(arg enable_fisheye)"/>
+      <arg name="enable_fisheye2"       value="$(arg enable_fisheye)"/>
+      <arg name="fisheye_width"         value="$(arg fisheye_width)"/>
+      <arg name="fisheye_height"        value="$(arg fisheye_height)"/>
+      <arg name="enable_sync"           value="$(arg enable_sync)"/>
+      <arg name="unite_imu_method"      value="$(arg unite_imu_method)"/>
+      <arg name="fisheye_fps"           value="$(arg fisheye_fps)"/>
+      <arg name="gyro_fps"              value="$(arg gyro_fps)"/>
+      <arg name="accel_fps"             value="$(arg accel_fps)"/>
+      <arg name="enable_gyro"           value="true"/>
+      <arg name="enable_accel"          value="true"/>
+    </include>
+  </group>
+
+
+  <!-- ========================================================= -->
+  <!-- ========================================================= -->
+  <!-- ========================================================= -->
+
+
+</launch>

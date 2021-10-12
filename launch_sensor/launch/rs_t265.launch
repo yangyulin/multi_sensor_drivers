@@ -19,13 +19,13 @@ https://github.com/IntelRealSense/librealsense/blob/master/third-party/libtm/lib
 
   <arg name="fisheye_fps"         default="30"/>
   <arg name="gyro_fps"            default="200"/>
-  <arg name="accel_fps"           default="60"/>
+  <arg name="accel_fps"           default="62"/>
+  <arg name="unite_imu_method"    default="linear_interpolation"/> <!-- combines accel+gyro into one message -->
   <arg name="enable_gyro"         default="true"/>
   <arg name="enable_accel"        default="true"/>
-  <arg name="enable_sync"         default="false"/>
+  <arg name="enable_sync"         default="true"/>
   <arg name="linear_accel_cov"    default="0.01"/>
   <arg name="initial_reset"       default="false"/>
-  <arg name="unite_imu_method"    default=""/>
   <arg name="publish_odom_tf"     default="true"/>
   
   <group ns="$(arg camera)">

@@ -1,0 +1,118 @@
+<launch>
+
+  <!--================================================================-->
+  <!--================================================================-->
+  <!--Pointgrey camera (blackfly)-->
+  <arg name="camera_name_pg"            default="camera_pg" />
+  <arg name="camera_serial_pg"          default="0" />
+  <arg name="calibrated"                default="0" />
+  <arg name="frame_rate"                default="30" />
+  <arg name="auto_shutter"              default="false" />
+  <arg name="shutter_speed"             default="0.015" />
+  <arg name="format7_roi_width"         default="800" />
+  <arg name="format7_roi_height"        default="600" />
+  <arg name="format7_color_coding"      default="mono8" />
+  <include file="$(find launch_sensor)/launch/pointgrey.launch">
+    <arg name="camera_name_pg"          value="$(arg camera_name_pg)"/>
+    <arg name="camera_serial_pg"        value="$(arg camera_serial_pg)"/>
+    <arg name="frame_rate"              value="$(arg frame_rate)"/>
+    <arg name="auto_shutter"            value="$(arg auto_shutter)" />
+    <arg name="shutter_speed"           value="$(arg shutter_speed)" />
+    <arg name="format7_roi_width"       value="$(arg format7_roi_width)" />
+    <arg name="format7_roi_height"      value="$(arg format7_roi_height)" />
+    <arg name="format7_color_coding"      value="$(arg format7_color_coding)" />
+
+  </include>
+
+
+  <!--================================================================-->
+  <!--================================================================-->
+  <!--Realsense t265-->
+  <arg name="serial_no"           default=""/>
+  <arg name="usb_port_id"         default=""/>
+  <arg name="device_type"         default="t265"/>
+  <arg name="json_file_path"      default=""/>
+  <arg name="camera"              default="camera"/>
+  <arg name="tf_prefix"           default="$(arg camera)"/>
+
+  <arg name="fisheye_width"       default="848"/>
+  <arg name="fisheye_height"      default="800"/>
+  <arg name="enable_fisheye1"     default="true"/>
+  <arg name="enable_fisheye2"     default="true"/>
+
+  <arg name="fisheye_fps"         default="30"/>
+  <arg name="gyro_fps"            default="200"/>
+  <arg name="accel_fps"           default="62"/>
+  <arg name="enable_gyro"         default="true"/>
+  <arg name="enable_accel"        default="true"/>
+  <arg name="enable_sync"         default="false"/>
+  <arg name="linear_accel_cov"    default="0.01"/>
+  <arg name="initial_reset"       default="false"/>
+  <arg name="unite_imu_method"    default=""/>
+  <arg name="publish_odom_tf"     default="true"/>
+
+  <group ns="$(arg camera)">
+    <include file="$(find realsense2_camera)/launch/includes/nodelet.launch.xml">
+      <arg name="tf_prefix"                value="$(arg tf_prefix)"/>
+      <arg name="serial_no"                value="$(arg serial_no)"/>
+      <arg name="usb_port_id"              value="$(arg usb_port_id)"/>
+      <arg name="device_type"              value="$(arg device_type)"/>
+      <arg name="json_file_path"           value="$(arg json_file_path)"/>
+      <arg name="enable_sync"              value="$(arg enable_sync)"/>
+      <arg name="fisheye_width"            value="$(arg fisheye_width)"/>
+      <arg name="fisheye_height"           value="$(arg fisheye_height)"/>
+      <arg name="enable_fisheye1"          value="$(arg enable_fisheye1)"/>
+      <arg name="enable_fisheye2"          value="$(arg enable_fisheye2)"/>
+
+      <arg name="fisheye_fps"              value="$(arg fisheye_fps)"/>
+      <arg name="gyro_fps"                 value="$(arg gyro_fps)"/>
+      <arg name="accel_fps"                value="$(arg accel_fps)"/>
+      <arg name="enable_gyro"              value="$(arg enable_gyro)"/>
+      <arg name="enable_accel"             value="$(arg enable_accel)"/>
+
+      <arg name="linear_accel_cov"         value="$(arg linear_accel_cov)"/>
+      <arg name="initial_reset"            value="$(arg initial_reset)"/>
+      <arg name="unite_imu_method"         value="$(arg unite_imu_method)"/>
+
+      <arg name="publish_odom_tf"          value="$(arg publish_odom_tf)"/>
+    </include>
+  </group>
+
+  <!--================================================================-->
+  <!--================================================================-->
+  <!--VICON system-->
+  <arg name="vicon_server" default="192.168.1.161"/>
+  <include file="$(find launch_sensor)/launch/vicon.launch">
+    <arg name="vicon_server" value="$(arg vicon_server)"/>
+  </include>
+
+  <!--================================================================-->
+  <!--================================================================-->
+  <!--VICON odometry system-->
+  <arg name="model"               default="cvio_s4"/>
+  <arg name="child_frame_id"      default="$(arg model)/base_link"/>
+  <arg name="publish_tf"          default="true"/>
+  <arg name="vicon_fps"           default="100"/>
+  <arg name="output"              default="screen"/>
+  <include file="$(find launch_sensor)/launch/vicon_odom.launch">
+    <arg name="model"               value="$(arg model)"/>
+    <arg name="child_frame_id"      value="$(arg child_frame_id)"/>
+    <arg name="publish_tf"          value="$(arg publish_tf)"/>
+    <arg name="vicon_fps"           value="$(arg vicon_fps)"/>
+    <arg name="output"              value="$(arg output)"/>
+  </include>
+
+  <!--================================================================-->
+  <!--================================================================-->
+  <!--MicroStrain 3DM-GX3-25-->
+  <node pkg="microstrain_comm" type="microstrain_comm_node" name="microstrain_comm_node" output="screen">
+    <param name="rate"     value="medium" />
+    <param name="verbose"  value="false" />
+    <param name="quiet"    value="true" />
+  </node>
+
+
+
+
+
+</launch>
