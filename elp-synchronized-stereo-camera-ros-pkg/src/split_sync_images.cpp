@@ -60,14 +60,17 @@ void SplitImage::SyncImageCallback(const sensor_msgs::ImageConstPtr& msg)
     std::string right_frame = camera_ns + "_right_optical_frame";
     try
     {
-      cv_ptr_left = cv_bridge::toCvCopy(msg, sensor_msgs::image_encodings::BGR8);
-      cv_ptr_right = cv_bridge::toCvCopy(msg, sensor_msgs::image_encodings::BGR8);
+//      cv_ptr_left = cv_bridge::toCvCopy(msg, sensor_msgs::image_encodings::BGR8);
+      cv_ptr_left = cv_bridge::toCvCopy(msg, sensor_msgs::image_encodings::MONO8);
+//      cv_ptr_right = cv_bridge::toCvCopy(msg, sensor_msgs::image_encodings::BGR8);
+      cv_ptr_right = cv_bridge::toCvCopy(msg, sensor_msgs::image_encodings::MONO8);
     }
     catch (cv_bridge::Exception& e)
     {
       ROS_ERROR("cv_bridge exception: %s", e.what());
       return;
     }
+
     int combined_rows = cv_ptr_left->image.rows; 
     int combined_cols = cv_ptr_left->image.cols;  
     int image_cols = combined_cols/2;
